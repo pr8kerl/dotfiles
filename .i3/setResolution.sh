@@ -31,4 +31,5 @@ do
 done
 
 xrdb -merge $HOME/.Xresources
+xset dpms 60
 
