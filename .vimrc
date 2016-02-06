@@ -3,9 +3,10 @@ set background=dark
 colorscheme solarized
 set ts=2
 set number
-set mouse=a
+set mouse=r
 " set foldmethod=syntax
 " set foldnestmax=1
+set paste
 
 " Some Linux distributions set filetype in /etc/vimrc.
 " Clear filetype flags before changing runtimepath to force Vim to reload them.
@@ -17,3 +18,4 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
+let g:vim_json_syntax_conceal = 0
