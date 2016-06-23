@@ -3,7 +3,7 @@ set background=dark
 colorscheme solarized
 set ts=2
 set number
-set mouse=r
+" set mouse=r
 " set foldmethod=syntax
 " set foldnestmax=1
 set paste
@@ -19,3 +19,6 @@ syntax on
 filetype plugin indent on
 
 let g:vim_json_syntax_conceal = 0
+
+set guifont=Envy\ Code\ R\ 14
+
