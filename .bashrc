@@ -107,22 +107,11 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-JAVA_HOME=/usr
-EC2_HOME=~/sfw/ec2-api-tools
-PATH=${EC2_HOME}/bin:/usr/local/bin:${PATH}
-export JAVA_HOME EC2_HOME PATH
-
-eval `dircolors ~/.config/awesome/dircolors/dircolors.256dark`
-
 LS_COLORS='di=0;33' 
 export LS_COLORS
 
 xrdb -merge ~/.Xresources
-
-# rbenv setup
-PATH=/usr/local/rbenv/bin:/usr/local/rbenv/plugins/ruby-build/bin:$PATH
-export PATH
-eval "$(rbenv init -)"
+setxkbmap -layout us
 
 # go setup
 GOROOT=/usr/local/go

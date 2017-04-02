@@ -9,15 +9,22 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
+# Set Alt key to be Mod key
+# set $mod Mod1
+
+# Set Windows or Cmd key to be Mod key
 set $mod Mod4
 
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
+#font pango:System San Francisco Display 13
+font pango:Envy Code R 13
+
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
-font xft:Envy Code R 18
+# font pango:DejaVu Sans Mono 8
+
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # The font above is very space-efficient, that is, it looks good, sharp and
@@ -36,11 +43,18 @@ bindsym $mod+Return exec urxvt -ls +sb -fn "xft:Envy Code R:pixelsize=18"
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+# bindsym $mod+d exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+
+
+# exec compton
+# rofi (dmenu alternative)
+# bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 700 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "System San Francisco Display 18"
+
+
 
 # change focus
 bindsym $mod+j focus down
@@ -55,10 +69,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
-bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+h move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -71,8 +85,6 @@ bindsym $mod+b split h
 
 # split in vertical orientation
 bindsym $mod+v split v
-
-default_orientation horizontal
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -96,34 +108,41 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-
-#set $tag1 "1: term"
-#set $tag2 "2: terms"
-#set $tag3 "3: www"
+# Name workspaces
+set $workspace1 1
+set $workspace2 2
+set $workspace3 3
+set $workspace4 4
+set $workspace5 5
+set $workspace6 6
+set $workspace7 7
+set $workspace8 8
+set $workspace9 9
+set $workspace10 10
 
 # switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+9 workspace $workspace9
+bindsym $mod+0 workspace $workspace10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
+bindsym $mod+Shift+1 move container to workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+6 move container to workspace $workspace6
+bindsym $mod+Shift+7 move container to workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8
+bindsym $mod+Shift+9 move container to workspace $workspace9
+bindsym $mod+Shift+0 move container to workspace $workspace10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -158,9 +177,28 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+set $bg-color               #2f343f
+set $inactive-bg-color      #2f343f
+set $urgent-bg-color        #E53935
+set $text-color             #f3f4f5
+set $inactive-text-color    #676E7D
+
+
+
+# window colors
+#                       border              background          text                    indicator
+client.focused          $bg-color           $bg-color           $text-color             #4c7899
+client.unfocused        $inactive-bg-color  $inactive-bg-color  $inactive-text-color    #333333
+client.focused_inactive $inactive-bg-color  $inactive-bg-color  $inactive-text-color    #333333
+client.urgent           $urgent-bg-color    $urgent-bg-color    $text-color             #2f343a
+
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
+        # tray_output primary
+        #status_command i3status # Default option
+        status_command i3blocks -c ~/.config/i3status/config # Optional
         colors {
             # solarized
             background #586e75
@@ -169,22 +207,42 @@ bar {
             active_workspace #cb4b16 #cb4b16 #eee8d5
             inactive_workspace #b58900 #b58900 #eee8d5
         }
-    # i3bar position
-    position bottom
-    # Using custom i3status.conf
-    status_command i3status -c ~/.i3/i3status.conf
 }
 
-# move focused container to external monitor
-#bindsym $mod+o move workspace to output HDMI1
-#bindsym $mod+Shift+o move workspace to output LVDS1
+# Lock computer using i3lock
+bindsym $mod+Shift+x exec i3lock --color 586e75
 
-# class                 border  backgr. text    indicator
-client.focused          #859900 #859900 #fdf6e3 #2e9ef4
-client.focused_inactive #268bd2 #268bd2 #fdf6e3 #484e50
-client.unfocused        #333333 #93a1a1 #fdf6e3 #292d2e
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +2%; exec pactl set-sink-mute @DEFAULT_SINK@ 0
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -2%; exec pactl set-sink-mute @DEFAULT_SINK@ 0
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 
-#exec xsetroot -solid "#e1dce0"
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
 
-exec --no-startup-id /home/ians/.i3/setResolution.sh
-exec --no-startup-id feh --bg-scale /home/ians/.i3/background.png
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
+
+# Touchpad controls
+bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh #toggle touchpad
+exec --no-startup-id synclient VertEdgeScroll=0 HorizEdgeScroll=0
+exec --no-startup-id synclient VertTwoFingerScroll=1 HorizTwoFingerScroll=1
+exec --no-startup-id synclient VertScrollDelta=-300 HorizScrollDelta=-300
+exec --no-startup-id synclient NaturalScrolling=1
+exec --no-startup-id synclient MaxTapTime=0
+
+# Set wallpaper
+#exec_always --no-startup-id feh --bg-scale ~/.wallpaper.jpg
+exec_always --no-startup-id feh --bg-scale ~/.wallpaper.png
+#exec_always --no-startup-id feh --bg-scale ~/wallpaper.jpg
+#exec_always --no-startup-id feh --bg-scale ~/wallpaper.png
+
+# Startup Programs
+exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+exec --no-startup-id dropbox start
+exec --no-startup-id nm-applet
+exec --no-startup-id caffeine-indicator
+exec --no-startup-id synclient
