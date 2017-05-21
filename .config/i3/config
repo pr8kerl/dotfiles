@@ -210,7 +210,7 @@ bar {
 }
 
 # Lock computer using i3lock
-bindsym $mod+Shift+x exec i3lock --color fdf6e3
+bindsym $mod+Shift+x exec i3lock --color 002b36
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +2%; exec pactl set-sink-mute @DEFAULT_SINK@ 0
