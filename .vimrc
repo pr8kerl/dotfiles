@@ -7,6 +7,7 @@ set number
 " set foldmethod=syntax
 " set foldnestmax=1
 set paste
+set encoding=utf-8
 
 " Some Linux distributions set filetype in /etc/vimrc.
 " Clear filetype flags before changing runtimepath to force Vim to reload them.

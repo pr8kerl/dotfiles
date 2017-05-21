@@ -114,9 +114,14 @@ xrdb -merge ~/.Xresources
 setxkbmap -layout us
 
 # go setup
-GOROOT=/usr/local/go
-PATH=$PATH:$GOROOT/bin
-export GOROOT PATH
-
+GODIR=/usr/local/go
+PATH=$PATH:$GODIR/bin
+export PATH
 alias goset='cd ~/work/go && . ./go.env'
 export goset
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# added by travis gem
+[ -f /home/ians/.travis/travis.sh ] && source /home/ians/.travis/travis.sh

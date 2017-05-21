@@ -210,7 +210,7 @@ bar {
 }
 
 # Lock computer using i3lock
-bindsym $mod+Shift+x exec i3lock --color 586e75
+bindsym $mod+Shift+x exec i3lock --color fdf6e3
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +2%; exec pactl set-sink-mute @DEFAULT_SINK@ 0
@@ -235,10 +235,9 @@ exec --no-startup-id synclient NaturalScrolling=1
 exec --no-startup-id synclient MaxTapTime=0
 
 # Set wallpaper
-#exec_always --no-startup-id feh --bg-scale ~/.wallpaper.jpg
 exec_always --no-startup-id feh --bg-scale ~/.wallpaper.png
-#exec_always --no-startup-id feh --bg-scale ~/wallpaper.jpg
-#exec_always --no-startup-id feh --bg-scale ~/wallpaper.png
+# Set monitor
+exec_always --no-startup-id ~/.config/i3/monitor.sh
 
 # Startup Programs
 exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &

@@ -1,0 +1,17 @@
+"*":
+  core:
+    disabledPackages: [
+      "vim-surround"
+    ]
+    telemetryConsent: "limited"
+    themes: [
+      "one-dark-ui"
+      "solarized-dark-syntax"
+    ]
+  editor:
+    fontFamily: "Envy Code R"
+    fontSize: 16
+  "exception-reporting":
+    userId: "880ba7b6-355e-4d15-a00c-f157ce40f04d"
+  welcome:
+    showOnStartup: false
