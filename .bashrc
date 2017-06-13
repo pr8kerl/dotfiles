@@ -125,3 +125,7 @@ export NVM_DIR="$HOME/.nvm"
 
 # added by travis gem
 [ -f /home/ians/.travis/travis.sh ] && source /home/ians/.travis/travis.sh
+export http_proxy=''
+export https_proxy=''
+export ftp_proxy=''
+export socks_proxy=''

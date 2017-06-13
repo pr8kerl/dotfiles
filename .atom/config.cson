@@ -13,5 +13,7 @@
     fontSize: 16
   "exception-reporting":
     userId: "880ba7b6-355e-4d15-a00c-f157ce40f04d"
+  "vim-mode-plus-ex-mode":
+    notifiedUseExMode: true
   welcome:
     showOnStartup: false

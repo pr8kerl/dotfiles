@@ -228,6 +228,11 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightne
 
 # Touchpad controls
 bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh #toggle touchpad
+
+# printscreen
+bindsym --release Print exec "scrot -u ~/Downloads/Screenshot%Y-%m-%d%H:%M:%S.png"
+
+
 exec --no-startup-id synclient VertEdgeScroll=0 HorizEdgeScroll=0
 exec --no-startup-id synclient VertTwoFingerScroll=1 HorizTwoFingerScroll=1
 exec --no-startup-id synclient VertScrollDelta=-300 HorizScrollDelta=-300

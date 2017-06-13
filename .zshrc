@@ -53,7 +53,7 @@ CASE_SENSITIVE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-prompt aws zsh-dircolors-solarized)
+plugins=(git git-prompt aws zsh-dircolors-solarized kubectl)
 
 source $ZSH/oh-my-zsh.sh
 source $ZSH/custom/plugins/zsh-dircolors-solarized/zsh-dircolors-solarized.zsh
@@ -90,6 +90,7 @@ alias aumeladmin="xfreerdp +clipboard /d:MYOB /u:admin-ian.stahnke /h:1024 /w:12
 alias aumeladfs="xfreerdp +clipboard /d:MYOB /u:admin-ian.stahnke /h:1024 /w:1280 /v:aumeladfs01.myob.myobcorp.net"
 alias aumelipki01="xfreerdp +clipboard /d:MYOB /u:admin-ian.stahnke /h:1024 /w:1280 /v:aumelipki01.myob.myobcorp.net"
 alias aumelipki02="xfreerdp +clipboard /d:MYOB /u:admin-ian.stahnke /h:1024 /w:1280 /v:aumelipki02.myob.myobcorp.net"
+alias passphraser="date +%s | sha256sum | base64 | head -c 32 ; echo"
 
 # rvm
 [ -s "/etc/profile.d/rvm.sh" ] && source /etc/profile.d/rvm.sh
@@ -106,5 +107,30 @@ export GOPATH PATH
 [ -f /home/ians/.travis/travis.sh ] && source /home/ians/.travis/travis.sh
 
 # k00bs
-export KUBECONFIG=~/.kube/config-central-development:~/.kube/config-production:~/.kube/config-preprod kubectl config view
+export KUBECONFIG=~/.kube/config-development:~/.kube/config-production:~/.kube/config-preprod kubectl config view
 
+function k() {
+  kenv="dev"
+  kontext=""
+  if [  -n "$1" ]
+  then
+    kenv="$1"
+  fi
+  case $kenv in 
+    dev*)
+      kontext="k8s.ex-central-development.myob.com"
+      ;;
+    pre*)
+      kontext="jupiter-preprod.platform.myob.com"
+      ;;
+    pro*)
+      kontext="jupiter.platform.myob.com"
+      ;;
+    *)
+      echo unknown context: $kenv
+      echo defaulting to development
+      kontext="k8s.ex-central-development.myob.com"
+      ;;
+  esac
+  kubectl config use-context ${kontext}
+}
