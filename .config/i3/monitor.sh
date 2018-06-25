@@ -7,7 +7,7 @@ DEFAULT_SCRIPT=~/.screenlayout/home.sh
 
 
 # just look for status of DP-1 - if connected - we are in the office
-WORK=`xrandr|grep DP-1-1|grep -v $INTERNAL_OUTPUT |cut -f2 -d" "`
+WORK=`xrandr|grep DP-1-2|grep -v $INTERNAL_OUTPUT |cut -f2 -d" "`
 
 case $WORK in
 				"connected")

@@ -1,18 +1,43 @@
 "*":
+  "atom-beautify":
+    general:
+      _analyticsUserId: "4c3b6205-6119-40c8-92c5-80df453bfd7a"
+    js:
+      beautify_on_save: true
+      end_with_newline: true
   core:
     disabledPackages: [
       "vim-surround"
     ]
     telemetryConsent: "limited"
     themes: [
-      "one-dark-ui"
-      "solarized-dark-syntax"
+      "nord-atom-ui"
+      "nord-atom-syntax"
     ]
   editor:
     fontFamily: "Envy Code R"
-    fontSize: 16
+    fontSize: 15
   "exception-reporting":
     userId: "880ba7b6-355e-4d15-a00c-f157ce40f04d"
+  "go-plus":
+    format:
+      tool: "gofmt"
+    panel:
+      currentHeight: "40.62811565304087vh"
+  "linter-eslint":
+    fixOnSave: true
+  "linter-jshint":
+    esversion: 6
+  "linter-ui-default": {}
+  "platformio-ide-terminal":
+    style:
+      fontFamily: "Envy Code R"
+      fontSize: "14"
+      theme: "solarized-dark"
+    toggles:
+      cursorBlink: false
+  "tree-view":
+    hideVcsIgnoredFiles: true
   "vim-mode-plus-ex-mode":
     notifiedUseExMode: true
   welcome:
