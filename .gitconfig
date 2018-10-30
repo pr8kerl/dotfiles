@@ -1,5 +1,7 @@
 [user]
-	email = ian.stahnke@myob.com
+	email = 3182572+pr8kerl@users.noreply.github.com
 	name = Ian Stahnke
 [core]
 	editor = vim
+	ff = only
+	conflictstyle = diff3

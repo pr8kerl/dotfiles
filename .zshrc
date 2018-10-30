@@ -96,7 +96,7 @@ export NVM_DIR="$HOME/.nvm"
 
 GODIR=/usr/local/go
 GOPATH=$HOME/work/go
-PATH=$PATH:$GODIR/bin:$GOPATH/bin
+PATH=$PATH:$GODIR/bin:$GOPATH/bin:~/bin/kubebuilder/bin
 export GOPATH PATH
 
 # added by travis gem
@@ -113,7 +113,7 @@ export GOPATH PATH
 [[ -f /home/ians/.nvm/versions/node/v7.8.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /home/ians/.nvm/versions/node/v7.8.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
 
 # Cluster configs
-DEFAULT_KUBE_NAMESPACE="platform-enablement-tribe"
+DEFAULT_KUBE_NAMESPACE="platform-enablement"
 alias k-auth-dev="myob-auth k -e dev -n $DEFAULT_KUBE_NAMESPACE"
 alias k-auth-preprod="myob-auth k -e jupiter-preprod -n $DEFAULT_KUBE_NAMESPACE"
 alias k-auth-prod="myob-auth k -e jupiter -n $DEFAULT_KUBE_NAMESPACE"
@@ -169,8 +169,7 @@ k-pf-grafana() {
 }
 
 k-pf-alertmgr () {
-    export POD_NAME=$(kubectl get pods -l "app=prometheus,component=alertmanager" -o jsonpath="{.items[0].metadata.name}")
-    kubectl port-forward $POD_NAME 9093
+    kubectl port-forward alertmanager-0 9093
 }
 
 k-pods-all() {
@@ -208,8 +207,18 @@ k-netshoot () {
    kubectl run -it --rm --restart=Never netshoot --image=nicolaka/netshoot bash
 }
 
+k-events () {
+    params=($*)
+    k get ev -o=custom-columns=Name:metadata.name,Reason:reason,Type:type,Kind:involvedObject.kind,FirstSeen:firstTimestamp,LastSeen:lastTimestamp,Component:source.component --sort-by='lastTimestamp' ${params}
+}
+
 git-diff() {
   git diff $*^!
+}
+
+private-ips () {
+  cluster=$1
+  aws ec2 describe-instances --region ap-southeast-2 --filters "Name=tag:KubernetesCluster,Values=$cluster" --query 'Reservations[].Instances[] | sort_by(@, &Tags[?Key==`Name`].Value[]|[0]) | [].{ IP:PrivateIpAddress, Name:Tags[?Key==`Name`].Value[]|[0] }' --output table
 }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
